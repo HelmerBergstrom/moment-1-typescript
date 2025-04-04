@@ -3,16 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css">
     <title> MOMENT 1 - TypeScript</title>
   </head>
   <body>
+    <main>
 
+      <div id="coursesDiv">
+          <table>
+            <thead>
+              <th> Kurskod </th>
+              <th> Kursnamn </th>
+              <th> Progression </th>
+              <th> Kursplan </th>
+            </thead>
+            <tbody id="courses">
 
+            </tbody>
+          </table>
+      </div>
 
+      <form id="addCourseForm">
+          <input type="text" id="courseCode" placeholder="Kurskod..." required/>
+          <input type="text" id="courseName" placeholder="Kursnamn..." required />
+          <select id="progression" required>
+            <option value="A"> A </option>
+            <option value="B"> B </option>
+            <option value="C"> C </option>
+          </select>
+          <input type="url" id="courseSyllabus" placeholder="Länk till kursplan..." required/>
+          <button type="submit"> Lägg till kurs </button>
+      </form>
 
-
-
-
+    </main>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

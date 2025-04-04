@@ -1,0 +1,43 @@
+main {
+    font-family: Arial, Helvetica, sans-serif;
+}
+table {
+    background-color: green;
+    color: white;
+}
+th {
+    font-size: 26px;
+    text-transform: uppercase;
+}
+#coursesDiv {   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#courses {
+    text-align: center;
+}
+#courses td {
+    border: 1px solid;
+    padding: 15px;
+}
+
+#addCourseForm {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px;
+}
+#addCourseForm input {
+    padding: 10px;
+    width: 250px;
+    margin-right: 20px;
+}
+#addCourseForm button {
+    background-color: green;
+    color: white;
+    width: 250px;
+}
+#progression {
+    width: 60px;
+}
