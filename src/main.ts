@@ -40,10 +40,22 @@ async function fetchCourses(): Promise<CourseInfo[]> {
 };
 
 function displayCourses(courses: CourseInfo[]) {
+    const coursesEl = document.getElementById("courses");
+
+    if(!coursesEl) return;
     
+    coursesEl.innerHTML = ""; 
 
+    courses.forEach(course => {
+        const row = document.createElement("tr");
 
-
-
+        row.innerHTML = `
+            <td> ${course.code} </td>
+            <td> ${course.coursename} </td>
+            <td id="progressionId"> ${course.progression} </td>
+            <td><a href=${course.syllabus}> Länk till kursplan </td>
+        `
+        coursesEl.appendChild(row);
+    })
 }
 

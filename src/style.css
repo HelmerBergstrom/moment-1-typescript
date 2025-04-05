@@ -1,31 +1,66 @@
-main {
-    font-family: Arial, Helvetica, sans-serif;
-}
-table {
-    background-color: green;
-    color: white;
-}
-th {
-    font-size: 26px;
-    text-transform: uppercase;
-}
-#coursesDiv {   
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-#courses {
+h1 {
     text-align: center;
+    margin-bottom: 0px;
 }
-#courses td {
-    border: 1px solid;
+p {
+    text-align: center;
+    margin-top: 0px;
+    font-style: italic;
+}
+h2 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+#coursesDiv {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
     padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.3);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+  
+thead th {
+    background-color: #007acc;
+    color: white;
+    font-weight: bold;
+}
+  
+td, th {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+  
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #eef6ff;
+}
+
+td a {
+    color: #007bcd;
+    text-decoration: none;
+}
+  
+td a:hover {
+   text-decoration: underline;
 }
 
 #addCourseForm {
     display: flex;
     justify-content: center;
     margin: 10px auto;
+    margin-top: 20px;
     padding: 10px;
 }
 #addCourseForm input {
@@ -34,8 +69,9 @@ th {
     margin-right: 20px;
 }
 #addCourseForm button {
-    background-color: green;
+    background-color: grey;
     color: white;
+    font-size: 18px;
     width: 250px;
 }
 #progression {
