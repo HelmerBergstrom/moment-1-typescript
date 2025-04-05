@@ -77,3 +77,6 @@ td a:hover {
 #progression {
     width: 60px;
 }
+#courseCode {
+    text-transform: uppercase;
+}

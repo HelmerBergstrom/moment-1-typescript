@@ -5,9 +5,18 @@ interface CourseInfo {
     syllabus: string;
 }   
 
+let courses: CourseInfo[] = [];
+
 window.addEventListener("DOMContentLoaded", async () => {
-    const courses = await fetchCourses();
-    displayCourses(courses);
+    const storedCourses = localStorage.getItem("courses")
+
+    if (!storedCourses) {
+        const courses = await fetchCourses();
+        displayCourses(courses);
+    } else {
+        courses = JSON.parse(storedCourses);
+        displayCourses(courses);
+    }
 });
 
 async function fetchCourses(): Promise<CourseInfo[]> {
@@ -40,22 +49,53 @@ async function fetchCourses(): Promise<CourseInfo[]> {
 };
 
 function displayCourses(courses: CourseInfo[]) {
-    const coursesEl = document.getElementById("courses");
+    const coursesEl = document.getElementById("courses") as HTMLTableSectionElement;
 
     if(!coursesEl) return;
     
     coursesEl.innerHTML = ""; 
 
     courses.forEach(course => {
-        const row = document.createElement("tr");
+        const row = document.createElement("tr") as HTMLTableRowElement;
 
         row.innerHTML = `
-            <td> ${course.code} </td>
+            <td style="text-transform: uppercase"> ${course.code} </td>
             <td> ${course.coursename} </td>
             <td id="progressionId"> ${course.progression} </td>
             <td><a href=${course.syllabus}> Länk till kursplan </td>
         `
         coursesEl.appendChild(row);
     })
-}
+};
 
+const formEl = document.getElementById("addCourseForm") as HTMLFormElement;
+
+formEl.addEventListener("submit", (event) => {
+    event.preventDefault(); // Detta för att sidan inte ska laddas om vid klick på submit-knappen!
+
+    const code = (document.getElementById("courseCode") as HTMLInputElement).value.toUpperCase();
+    const coursename = (document.getElementById("courseName") as HTMLInputElement).value;
+    const progression = (document.getElementById("progression") as HTMLSelectElement).value as 'A' | 'B' | 'C';
+    const syllabus = (document.getElementById("courseSyllabus") as HTMLInputElement).value;
+
+    // Kontrollerar om koden redan finns registrerad.
+    const ifExists = courses.some(c => c.code === code);
+    if(ifExists) {
+        alert("Kurskoden är redan registrerad!")
+        return;
+    }
+
+    const newCourse: CourseInfo = {
+        code,
+        coursename,
+        progression,
+        syllabus,
+    };
+
+    courses.push(newCourse);
+    localStorage.setItem("courses", JSON.stringify(courses));
+
+    displayCourses(courses);
+
+    formEl.reset();
+})
