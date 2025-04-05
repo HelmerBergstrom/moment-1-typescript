@@ -78,6 +78,10 @@ formEl.addEventListener("submit", (event) => {
     const progression = (document.getElementById("progression") as HTMLSelectElement).value as 'A' | 'B' | 'C';
     const syllabus = (document.getElementById("courseSyllabus") as HTMLInputElement).value;
 
+    if(progression !== 'A' && progression !== 'B' && progression !== 'C') {
+        alert("Välj en giltlig progression")
+        return;
+    }
     // Kontrollerar om koden redan finns registrerad.
     const ifExists = courses.some(c => c.code === code);
     if(ifExists) {
