@@ -96,3 +96,10 @@ formEl.addEventListener("submit", (event) => {
 
     formEl.reset();
 });
+
+const clearButton = document.getElementById("clearStorage") as HTMLButtonElement;
+
+clearButton.addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
+})
