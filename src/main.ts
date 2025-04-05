@@ -11,7 +11,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     const storedCourses = localStorage.getItem("courses")
 
     if (!storedCourses) {
-        const courses = await fetchCourses();
+        const fetchedCourses = await fetchCourses();
+        courses = fetchedCourses;
         displayCourses(courses);
     } else {
         courses = JSON.parse(storedCourses);
@@ -20,14 +21,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function fetchCourses(): Promise<CourseInfo[]> {
-    // Hämtar från localstorage om informationen finns där först. 
-    const localStorageData = localStorage.getItem("courses");
-    
-    if(localStorageData) {
-        console.log(localStorageData)
-        return JSON.parse(localStorageData) as CourseInfo[];
-    }
-
     try {
         const response = await fetch("https://webbutveckling.miun.se/files/ramschema_ht24.json");
 
@@ -102,4 +95,4 @@ formEl.addEventListener("submit", (event) => {
     displayCourses(courses);
 
     formEl.reset();
-})
+});
